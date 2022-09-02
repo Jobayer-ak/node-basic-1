@@ -1,6 +1,6 @@
 [
   {
-    "id": "1",
+    "id": 1,
     "gender": "Male",
     "name": "Rushow",
     "contact": "01926961533",
@@ -8,7 +8,7 @@
     "photoUrl": "https://picsum.photos/500/300?random=1"
   },
   {
-    "id": "2",
+    "id": 2,
     "gender": "Female",
     "name": "Emma",
     "contact": "01926961534",
@@ -16,7 +16,7 @@
     "photoUrl": "https://picsum.photos/500/300?random=2"
   },
   {
-    "id": "3",
+    "id": 3,
     "gender": "Male",
     "name": "Alex",
     "contact": "01926961535",
@@ -24,7 +24,7 @@
     "photoUrl": "https://picsum.photos/500/300?random=3"
   },
   {
-    "id": "4",
+    "id": 4,
     "gender": "Female",
     "name": "Kerry",
     "contact": "01926961536",
@@ -32,7 +32,7 @@
     "photoUrl": "https://picsum.photos/500/300?random=4"
   },
   {
-    "id": "5",
+    "id": 5,
     "gender": "Male",
     "name": "Styris",
     "contact": "01926961537",
@@ -40,7 +40,7 @@
     "photoUrl": "https://picsum.photos/500/300?random=5"
   },
   {
-    "id": "6",
+    "id": 6,
     "gender": "Female",
     "name": "Charlotte",
     "contact": "01926961538",
@@ -48,7 +48,7 @@
     "photoUrl": "https://picsum.photos/500/300?random=6"
   },
   {
-    "id": "7",
+    "id": 7,
     "gender": "Male",
     "name": "Freedy",
     "contact": "01926961539",
@@ -56,7 +56,7 @@
     "photoUrl": "https://picsum.photos/500/300?random=7"
   },
   {
-    "id": "8",
+    "id": 8,
     "gender": "Female",
     "name": "Rachel",
     "contact": "01926961540",
