@@ -3,6 +3,7 @@ const cors = require("cors");
 const dbConnect = require("./utils/dbConnect");
 require("dotenv").configure;
 const userInfo = require("./data.json");
+const usersRoutes = require("./routes/v1/users.route");
 
 const app = express();
 const PORT = 5000;
@@ -16,10 +17,7 @@ dbConnect();
 
 // Api
 // get all user api
-app.use("/", (req, res) => {
-  res.send(userInfo);
-  //   res.send("get all user data");
-});
+app.use("/api/v1", usersRoutes);
 
 // not found
 app.all("*", (req, res) => {
