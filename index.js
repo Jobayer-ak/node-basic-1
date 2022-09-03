@@ -21,7 +21,7 @@ dbConnect();
 app.use("/api/v1", usersRoutes);
 
 // add new user api
-app.use("/api/v1", usersRoutes);
+// app.use("/api/v1", usersRoutes);
 
 // not found
 app.all("*", (req, res) => {

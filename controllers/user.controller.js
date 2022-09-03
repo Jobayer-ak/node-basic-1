@@ -38,18 +38,16 @@ module.exports.saveNewUser = (req, res) => {
 
   const validation = myObject.find(
     (user) =>
+      Object.keys(user) === Object.keys(newData) ||
       user.id === newData.id ||
       user.name === newData.name ||
       user.contact === newData.contact ||
       user.address === newData.address ||
-      user.photoUrl === newData.photoUrl ||
-      Object.keys(user) === Object.keys(newData)
+      user.photoUrl === newData.photoUrl
   );
 
-  // const exisitingKeys = Object.keys(myObject);
-  // console.log(exisitingKeys);
+  // console.log(validation);
 
-  console.log(validation);
   if (validation) {
     res.send("Data exists in json file");
   } else {
@@ -66,3 +64,59 @@ module.exports.saveNewUser = (req, res) => {
     });
   }
 };
+
+// update user
+module.exports.updateRandomUser = (req, res) => {
+  const givenData = req.body;
+
+  const singleUser = userInfo.findIndex((user) => user.id == givenData.id);
+  const properties = Object.keys(givenData);
+
+  for (let property of properties) {
+    userInfo[singleUser][property] = givenData[property];
+  }
+
+  fs.writeFile("data.json", JSON.stringify(userInfo), (err) => {
+    if (err) {
+      res.send("Failed to update!");
+    } else {
+      res.send(JSON.stringify(userInfo));
+    }
+  });
+};
+
+// updtae a random user
+// module.exports.updateRandomUser = (req, res) => {
+//   let { id, gender, name, contact, address, photoUrl } = req.body;
+
+//   console.log(userInfo.length);
+
+//   if (id < 1 || id > userInfo.length) {
+//     res.send(`There is no ${id} id of users!`);
+//     return;
+//   }
+
+//   const singleUser = userInfo.find((user) => user.id === id);
+
+//   if (!id || !gender || !name || !contact || !address || !photoUrl) {
+//     res.send("You must update all field of information");
+//     return;
+//   } else {
+//     (singleUser.gender = gender),
+//       (singleUser.name = name),
+//       (singleUser.contact = contact),
+//       (singleUser.address = address),
+//       (singleUser.photoUrl = photoUrl);
+//   }
+
+//   console.log(singleUser);
+
+//   fs.writeFile("data.json", JSON.stringify(userInfo), (err) => {
+//     if (err) {
+//       console.log("Data didn't add to json file");
+//       return;
+//     }
+
+//     res.send(JSON.stringify(userInfo));
+//   });
+// };
