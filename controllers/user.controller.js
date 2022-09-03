@@ -34,25 +34,35 @@ module.exports.saveNewUser = (req, res) => {
   const data = fs.readFileSync("data.json");
   const myObject = JSON.parse(data);
   const newData = req.body;
+  // validating req.body data
+
   const validation = myObject.find(
     (user) =>
       user.id === newData.id ||
       user.name === newData.name ||
       user.contact === newData.contact ||
-      user.photoUrl === newData.photoUrl
+      user.address === newData.address ||
+      user.photoUrl === newData.photoUrl ||
+      Object.keys(user) === Object.keys(newData)
   );
+
+  // const exisitingKeys = Object.keys(myObject);
+  // console.log(exisitingKeys);
+
   console.log(validation);
   if (validation) {
     res.send("Data exists in json file");
   } else {
     myObject.push(newData);
     const newData2 = JSON.stringify(myObject);
+
     fs.writeFile("data.json", newData2, (err) => {
       if (err) {
         console.log(err.message);
         return;
       }
-      res.send("Successfully updated data");
+
+      res.send("Successfully added data to json file!");
     });
   }
 };
