@@ -20,6 +20,9 @@ dbConnect();
 // get all user api
 app.use("/api/v1", usersRoutes);
 
+// add new user api
+app.use("/api/v1", usersRoutes);
+
 // not found
 app.all("*", (req, res) => {
   res.send("Not Found!");
@@ -28,5 +31,3 @@ app.all("*", (req, res) => {
 app.listen(PORT, () => {
   console.log(`App is running on ${PORT}`);
 });
-
-console.log(typeof userInfo);

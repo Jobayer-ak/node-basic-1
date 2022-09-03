@@ -1,4 +1,4 @@
-// const userInfo = require("../data.json");
+const userInfo = require("../data.json");
 const fs = require("fs");
 
 // get all user
@@ -23,8 +23,36 @@ module.exports.getRandomUser = (req, res) => {
       return console.log(err.message);
     }
     const userData = JSON.parse(data);
-    const id = Math.floor(Math.random() * 9) + 1;
+    const id = Math.floor(Math.random() * userInfo.length) + 1;
     const randomUser = userData.filter((user) => user.id === id);
     res.send(randomUser);
   });
+};
+
+// save new user
+module.exports.saveNewUser = (req, res) => {
+  const data = fs.readFileSync("data.json");
+  const myObject = JSON.parse(data);
+  const newData = req.body;
+  const validation = myObject.find(
+    (user) =>
+      user.id === newData.id ||
+      user.name === newData.name ||
+      user.contact === newData.contact ||
+      user.photoUrl === newData.photoUrl
+  );
+  console.log(validation);
+  if (validation) {
+    res.send("Data exists in json file");
+  } else {
+    myObject.push(newData);
+    const newData2 = JSON.stringify(myObject);
+    fs.writeFile("data.json", newData2, (err) => {
+      if (err) {
+        console.log(err.message);
+        return;
+      }
+      res.send("Successfully updated data");
+    });
+  }
 };
