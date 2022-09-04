@@ -1,5 +1,6 @@
 const userInfo = require("../data.json");
 const fs = require("fs");
+const { resolveSoa } = require("dns");
 
 // get all user
 module.exports.getAllUser = (req, res) => {
@@ -31,11 +32,10 @@ module.exports.getRandomUser = (req, res) => {
 
 // save new user
 module.exports.saveNewUser = (req, res) => {
-  const data = fs.readFileSync("data.json");
-  const myObject = JSON.parse(data);
+  const myObject = userInfo;
   const newData = req.body;
-  // validating req.body data
 
+  // validating req.body data
   const validation = myObject.find(
     (user) =>
       Object.keys(user) === Object.keys(newData) ||
@@ -46,17 +46,16 @@ module.exports.saveNewUser = (req, res) => {
       user.photoUrl === newData.photoUrl
   );
 
-  // console.log(validation);
-
   if (validation) {
     res.send("Data exists in json file");
+    return;
   } else {
     myObject.push(newData);
     const newData2 = JSON.stringify(myObject);
 
     fs.writeFile("data.json", newData2, (err) => {
       if (err) {
-        console.log(err.message);
+        res.send("Failed to save user information!");
         return;
       }
 
@@ -67,7 +66,7 @@ module.exports.saveNewUser = (req, res) => {
 
 // update user
 module.exports.updateRandomUser = (req, res) => {
-  const givenData = req.body;
+  const givenData = req?.body;
 
   const singleUser = userInfo.findIndex((user) => user.id == givenData.id);
   const properties = Object.keys(givenData);
@@ -79,44 +78,73 @@ module.exports.updateRandomUser = (req, res) => {
   fs.writeFile("data.json", JSON.stringify(userInfo), (err) => {
     if (err) {
       res.send("Failed to update!");
+      return;
     } else {
-      res.send(JSON.stringify(userInfo));
+      res.send("Successfully updated");
     }
   });
 };
 
-// updtae a random user
-// module.exports.updateRandomUser = (req, res) => {
-//   let { id, gender, name, contact, address, photoUrl } = req.body;
+// update multiple user
+module.exports.updateMultipleInfo = (req, res) => {
+  const updateUsers = req.body;
 
-//   console.log(userInfo.length);
+  for (let updateUser of updateUsers) {
+    let userIndex = userInfo.findIndex((obj) => obj.id == updateUser.id);
+    const properties = Object.keys(updateUser);
+    for (let property of properties) {
+      userInfo[userIndex][property] = updateUser[property];
+    }
 
-//   if (id < 1 || id > userInfo.length) {
-//     res.send(`There is no ${id} id of users!`);
-//     return;
-//   }
+    for (let property in userInfo[userIndex]) {
+      userInfo[userIndex][property] == givend[property];
+    }
+  }
 
-//   const singleUser = userInfo.find((user) => user.id === id);
+  fs.writeFile("data.json", JSON.stringify(userInfo), (err) => {
+    if (err) {
+      res.send("Failed to update multiple information!");
+      return;
+    } else {
+      res.send("Multiple users infos are updated");
+    }
+  });
+};
 
-//   if (!id || !gender || !name || !contact || !address || !photoUrl) {
-//     res.send("You must update all field of information");
-//     return;
-//   } else {
-//     (singleUser.gender = gender),
-//       (singleUser.name = name),
-//       (singleUser.contact = contact),
-//       (singleUser.address = address),
-//       (singleUser.photoUrl = photoUrl);
-//   }
+//delete user
+module.exports.deleteUser = (req, res) => {
+  const givenId = req.body;
+  // const objLength = Object.keys(givenId).length;
 
-//   console.log(singleUser);
+  // provided object property name checking whether it is id or not
+  if (Object.keys(givenId).toString() !== "id") {
+    res.send("You have to provide 'id' as object property number as value!");
+    return;
+  }
 
-//   fs.writeFile("data.json", JSON.stringify(userInfo), (err) => {
-//     if (err) {
-//       console.log("Data didn't add to json file");
-//       return;
-//     }
+  if (isNaN(givenId.id)) {
+    res.send("Your property value is not a number");
+    return;
+  }
 
-//     res.send(JSON.stringify(userInfo));
-//   });
-// };
+  const foundUser = userInfo.find((user) => user.id == Number(givenId.id));
+
+  if (!foundUser) {
+    res.send("Id didn't match");
+    return;
+  } else {
+    const objIndex = userInfo.findIndex(
+      (user) => user.id == Number(givenId.id)
+    );
+
+    userInfo.splice(objIndex, 1);
+
+    fs.writeFile("data.json", JSON.stringify(userInfo), (err) => {
+      if (err) {
+        res.send("Failed to delete!");
+      } else {
+        res.send("Succuessfully deleted!");
+      }
+    });
+  }
+};

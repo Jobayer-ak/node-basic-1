@@ -17,11 +17,7 @@ app.use(express.json());
 dbConnect();
 
 // Api
-// get all user api
 app.use("/api/v1", usersRoutes);
-
-// add new user api
-// app.use("/api/v1", usersRoutes);
 
 // not found
 app.all("*", (req, res) => {
