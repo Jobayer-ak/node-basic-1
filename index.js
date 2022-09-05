@@ -7,7 +7,7 @@ const usersRoutes = require("./routes/v1/users.route");
 const fs = require("fs");
 
 const app = express();
-const PORT = 5000;
+const port = process.env.PORT || 3000;
 
 // middleware
 app.use(cors());
@@ -24,6 +24,6 @@ app.all("*", (req, res) => {
   res.send("Not Found!");
 });
 
-app.listen(PORT, () => {
-  console.log(`App is running on ${PORT}`);
+app.listen(port, () => {
+  console.log(`App is running on ${port}`);
 });
