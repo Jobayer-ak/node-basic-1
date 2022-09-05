@@ -87,20 +87,6 @@ module.exports.updateRandomUser = (req, res) => {
     return;
   }
 
-  // console.log(givenData);
-
-  // if (Object.keys(givenData).toString() !== "id") {
-  //   res.send(
-  //     "You have to provide 'id' as object property and number as value!"
-  //   );
-  //   return;
-  // }
-
-  // if (isNaN(givenData.id)) {
-  //   res.send("Your property value is not a number");
-  //   return;
-  // }
-
   const singleUser = userInfo.findIndex((user) => user.id == givenData.id);
   const properties = Object.keys(givenData);
 
