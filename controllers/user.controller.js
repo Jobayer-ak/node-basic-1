@@ -41,13 +41,13 @@ module.exports.saveNewUser = (req, res) => {
       Object.keys(user) === Object.keys(newData) ||
       user.id === newData.id ||
       user.name === newData.name ||
-      user.contact === newData.contact ||
-      user.address === newData.address ||
-      user.photoUrl === newData.photoUrl
+      user.contact === newData.contact
+    // user.address === newData.address ||
+    // user.photoUrl === newData.photoUrl
   );
 
   if (validation) {
-    res.send("Data exists in json file");
+    res.send("Your provided data exists!");
     return;
   } else {
     myObject.push(newData);
@@ -59,7 +59,7 @@ module.exports.saveNewUser = (req, res) => {
         return;
       }
 
-      res.send("Successfully added data to json file!");
+      res.send("Successfully saved!");
     });
   }
 };
@@ -67,6 +67,39 @@ module.exports.saveNewUser = (req, res) => {
 // update user
 module.exports.updateRandomUser = (req, res) => {
   const givenData = req?.body;
+
+  console.log(Object.keys(givenData).length);
+
+  if (!givenData || Object.keys(givenData).length < 2 || !givenData.id) {
+    res.send(
+      "You must provide 2 properties with value. id should be included!"
+    );
+    return;
+  }
+
+  if (isNaN(givenData.id)) {
+    res.send("id value should be a number!");
+    return;
+  }
+
+  if (givenData.id > userInfo.length) {
+    res.send("Your provided id doen't exist!");
+    return;
+  }
+
+  // console.log(givenData);
+
+  // if (Object.keys(givenData).toString() !== "id") {
+  //   res.send(
+  //     "You have to provide 'id' as object property and number as value!"
+  //   );
+  //   return;
+  // }
+
+  // if (isNaN(givenData.id)) {
+  //   res.send("Your property value is not a number");
+  //   return;
+  // }
 
   const singleUser = userInfo.findIndex((user) => user.id == givenData.id);
   const properties = Object.keys(givenData);
@@ -91,7 +124,9 @@ module.exports.updateMultipleInfo = (req, res) => {
 
   for (let updateUser of updateUsers) {
     let userIndex = userInfo.findIndex((obj) => obj.id == updateUser.id);
+
     const properties = Object.keys(updateUser);
+
     for (let property of properties) {
       userInfo[userIndex][property] = updateUser[property];
     }
