@@ -1,1 +1,82 @@
-[{"id":1,"gender":"Male","name":"Rushow","contact":"01926961533","address":"Gulshan-2, Dhaka","photoUrl":"https://picsum.photos/500/300?random=1"},{"id":2,"gender":"Male","contact":"123456789","name":"shoriful","address":"Mirpur-10","photoUrl":"https://picsum.photos/500/300?random=2"},{"id":3,"gender":"Male","name":"Alex","contact":"01926961535","address":"Gulshan-2, Dhaka","photoUrl":"https://picsum.photos/500/300?random=3"},{"id":4,"gender":"Female","name":"Kerry","contact":"01926961536","address":"Gulshan-1, Dhaka","photoUrl":"https://picsum.photos/500/300?random=4"},{"id":5,"gender":"Male","name":"Styris","contact":"01926961537","address":"Gulshan-1, Dhaka","photoUrl":"https://picsum.photos/500/300?random=5"},{"id":6,"gender":"Female","name":"Charlotte","contact":"01926961538","address":"Gulshan-2, Dhaka","photoUrl":"https://picsum.photos/500/300?random=6"},{"id":7,"gender":"Male","name":"Freedy","contact":"01926961539","address":"Gulshan-1, Dhaka","photoUrl":"https://picsum.photos/500/300?random=7"},{"id":8,"gender":"Female","name":"Rachel","contact":"01926961540","address":"Gulshan-2, Dhaka","photoUrl":"https://picsum.photos/500/300?random=8"},{"id":9,"gender":"Male","name":"Jeorge","contact":"01926961550","address":"Mirpur-2, Dhaka","photoUrl":"https://picsum.photos/500/300?random=9"},{"id":10,"gender":"Male","name":"Deniel Craig","contact":"01926961551","address":"Mirpur-2, Dhaka","photoUrl":"https://picsum.photos/500/300?random=10"}]
+[
+  {
+    "id": 1,
+    "gender": "Male",
+    "name": "Rushow",
+    "contact": "01926961533",
+    "address": "Gulshan-2, Dhaka",
+    "photoUrl": "https://picsum.photos/500/300?random=1"
+  },
+  {
+    "id": 2,
+    "gender": "Male",
+    "contact": "123456789",
+    "name": "shoriful",
+    "address": "Mirpur-10",
+    "photoUrl": "https://picsum.photos/500/300?random=2"
+  },
+  {
+    "id": 3,
+    "gender": "Male",
+    "name": "Alex",
+    "contact": "01926961535",
+    "address": "Gulshan-2, Dhaka",
+    "photoUrl": "https://picsum.photos/500/300?random=3"
+  },
+  {
+    "id": 4,
+    "gender": "Female",
+    "name": "Kerry",
+    "contact": "01926961536",
+    "address": "Gulshan-1, Dhaka",
+    "photoUrl": "https://picsum.photos/500/300?random=4"
+  },
+  {
+    "id": 5,
+    "gender": "Male",
+    "name": "Styris",
+    "contact": "01926961537",
+    "address": "Gulshan-1, Dhaka",
+    "photoUrl": "https://picsum.photos/500/300?random=5"
+  },
+  {
+    "id": 6,
+    "gender": "Female",
+    "name": "Charlotte",
+    "contact": "01926961538",
+    "address": "Gulshan-2, Dhaka",
+    "photoUrl": "https://picsum.photos/500/300?random=6"
+  },
+  {
+    "id": 7,
+    "gender": "Male",
+    "name": "Freedy",
+    "contact": "01926961539",
+    "address": "Gulshan-1, Dhaka",
+    "photoUrl": "https://picsum.photos/500/300?random=7"
+  },
+  {
+    "id": 8,
+    "gender": "Female",
+    "name": "Rachel",
+    "contact": "01926961540",
+    "address": "Gulshan-2, Dhaka",
+    "photoUrl": "https://picsum.photos/500/300?random=8"
+  },
+  {
+    "id": 9,
+    "gender": "Male",
+    "name": "Jeorge",
+    "contact": "01926961550",
+    "address": "Mirpur-2, Dhaka",
+    "photoUrl": "https://picsum.photos/500/300?random=9"
+  },
+  {
+    "id": 10,
+    "gender": "Male",
+    "name": "Deniel Craig",
+    "contact": "01926961551",
+    "address": "Mirpur-2, Dhaka",
+    "photoUrl": "https://picsum.photos/500/300?random=10"
+  }
+]
